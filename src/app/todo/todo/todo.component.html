@@ -1,0 +1,30 @@
+<div class="centered-content">
+    <div class="task-manager-container">
+
+        <div class="header">
+                <h1 *ngIf="todos.length <=6" class="title">
+                    {{ todos.length }} Lists
+                </h1>
+        </div>
+        <div class="formHeight">
+        <div *ngFor="let todo of todos | slice:0:6; let i = index;" class="form {{ (todo.completed ? 'done' : '') }}">
+                <p class="id">{{ i +1}}</p>
+                <p class="content" (click)="toggleDone(i)" *ngIf="i<6">{{ todo.text }}</p>
+                <button class="delete btn" (click)='deleteTodo(i)'>Remove</button>
+            </div>
+        </div>
+
+            <form class="form-pos" (submit)="addTodo()">
+                <div class="inputBtnPos">
+                    <input 
+                        type="text"
+                        name="inputTodo"
+                        placeholder="Enter task..."
+                        class="todo-input"
+                        [(ngModel)]="inputTodo"
+                     />
+                        <input type="submit" value="Add" class="todo-submit" />
+                    </div>
+                </form>
+    </div>
+</div>
